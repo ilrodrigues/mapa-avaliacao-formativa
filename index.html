@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atividades formais de avaliação formativa</title>
+<style>
+:root{color-scheme:light;--ink:#192e29;--paper:#f8f7ef;--line:#b8c7b9;--forest:#193f35;--mint:#e5eee2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:1rem/1.5 "Source Sans 3",system-ui,sans-serif}
+main{max-width:1160px;margin:auto;padding:24px clamp(16px,4vw,56px) 28px}
+.map{position:relative;display:grid;grid-template-columns:1fr 1.1fr 1fr;grid-template-rows:repeat(3,minmax(105px,auto));align-items:center;gap:24px clamp(18px,5vw,70px);padding:22px 0}
+.links{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.links path{fill:none;stroke:var(--line);stroke-width:1.5;vector-effect:non-scaling-stroke}
+h1,.node{position:relative;margin:0;text-align:center;border-radius:16px}
+h1{grid-area:2/2;background:var(--forest);color:white;padding:27px 16px;font:normal clamp(1.55rem,3vw,2.45rem)/1.08 Georgia,serif}
+.node{background:var(--mint);border:1px solid #a8beac;color:var(--ink);font:inherit;font-weight:650;min-height:64px;padding:12px;cursor:pointer}
+.node:hover{background:#d5e7d6}
+.node[aria-pressed="true"]{background:var(--forest);color:white;border-color:var(--forest)}
+.node:nth-of-type(1){grid-area:1/1}.node:nth-of-type(2){grid-area:2/1}.node:nth-of-type(3){grid-area:3/1}
+.node:nth-of-type(4){grid-area:1/3}.node:nth-of-type(5){grid-area:2/3}.node:nth-of-type(6){grid-area:3/3}
+.panel{border-top:1px solid var(--line);padding-top:14px;scroll-margin-top:12px}
+h2{font:normal clamp(1.5rem,3vw,2rem)/1.2 Georgia,serif;margin:8px 0 12px}
+.reference{color:#455e51;font-size:.86rem;margin:0}
+.entries{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+details{background:#fff;border:1px solid #cbd8cc;border-radius:10px;padding:0 14px}
+summary{cursor:pointer;padding:11px 0;font-weight:630}
+details p,details ul{margin:0 0 13px}
+details ul{padding-left:20px}
+li+li{margin-top:5px}
+:focus-visible{outline:3px solid #855321;outline-offset:3px}
+footer{margin-top:22px}
+@media(max-width:650px){
+.map{display:grid;grid-template-columns:1fr;grid-template-rows:auto;gap:10px;padding:0 0 20px 16px;border-left:2px solid var(--line)}
+.links{display:none}
+.map h1,.map .node:nth-of-type(n){grid-area:auto;text-align:left}
+.node{min-height:48px}.node::before{content:"";position:absolute;right:100%;top:50%;width:17px;border-top:1px solid var(--line)}
+.entries{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<main>
+<section class="map" aria-labelledby="tema">
+<svg class="links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+<path d="M 15 18 C 38 18 29 50 50 50 S 62 18 85 18 M 15 50 H 85 M 15 82 C 38 82 29 50 50 50 S 62 82 85 82"/>
+</svg>
+<h1 id="tema">Atividades formais de avaliação formativa</h1>
+<button type="button" class="node" aria-controls="trechos" aria-pressed="true">Evidências formativas formais</button>
+<button type="button" class="node" aria-controls="trechos" aria-pressed="false">Questionamento efetivo</button>
+<button type="button" class="node" aria-controls="trechos" aria-pressed="false">Propósitos e tipos de questionamentos</button>
+<button type="button" class="node" aria-controls="trechos" aria-pressed="false">Feedback para os alunos</button>
+<button type="button" class="node" aria-controls="trechos" aria-pressed="false">Autoavaliação e avaliação dos pares</button>
+<button type="button" class="node" aria-controls="trechos" aria-pressed="false">Estratégias de questionamento</button>
+</section>
+<section id="trechos" class="panel" aria-labelledby="ramo">
+<p class="reference" id="paginas"></p>
+<h2 id="ramo" aria-live="polite"></h2>
+<div class="entries"></div>
+</section>
+<footer class="reference">Russell &amp; Airasian · <cite>Avaliação em sala de aula</cite> · pp. 105–113</footer>
+</main>
+<script>
+const branches = [
+  { pages: "105–107", entries: [
+    ["“Sentir” o processo de instrução", "Esse “sentir” depende, em grande parte, das avaliações iniciais e do conhecimento prático que o professor tem do comportamento típico dos seus alunos."],
+    ["Planejamento refletido antes da instrução", "Atividades formais de avaliação formativa envolvem planejamento refletido antes da instrução e ações propositadas ao longo dela."],
+    ["Informações específicas sobre o nível de compreensão atual dos alunos", "Avaliações formativas formais dão aos professores informações específicas sobre o nível de compreensão atual dos alunos, e frequentemente permitem que os alunos forneçam feedback para ajudar a refinar seu raciocínio ou as suas habilidades."],
+    ["Diversas técnicas", ["Questões pré-planejadas", "Atividades formais", "Autoavaliações dos alunos", "Feedback de pares ou de um instrutor"]],
+    ["Atividades formais", "Atividades formais incluem problemas pequenos, deveres de casa feitos para reconhecer o que os alunos sabem ou sobre o que eles têm dúvidas, quizzes, ensaios e observações formais do laboratório ou outras atividades práticas."],
+    ["Coleta propositada e pré-planejada", "Em todos os casos, o que separa dados de avaliação formais de informais é a coleta propositada e pré-planejada de informações sobre a aprendizagem dos alunos."]
+  ]},
+  { pages: "107–108", entries: [
+    ["Dois propósitos", ["Manter a atenção dos alunos", "Coletar informações sobre o seu nível atual de compreensão."]],
+    ["Perguntas feitas para manter a atenção", "Perguntas feitas para manter a atenção costumam ser curtas e feitas de modo a exigir respostas factuais de um único aluno."],
+    ["Compreensão conceitual", "Perguntas feitas para avaliar o nível de conhecimento atual dos alunos costumam ser mais abertas e se focam na compreensão conceitual."],
+    ["Tempo de espera", "Para perguntas abertas os alunos podem precisar de 20 a 30 segundos antes de conseguirem dar respostas bem pensadas."],
+    ["Respostas de diversos estudantes", "Ao usar perguntas para avaliar o nível de compreensão atual dos alunos, também é importante obter respostas de diversos estudantes."],
+    ["Diferentes perspectivas sobre um assunto", "Considere direcionar uma pergunta relacionada ou de esclarecimento para um aluno cuja mão não esteja levantada e, a seguir, pedir uma resposta adicional a um aluno que tenha sido rápido em levantar a mão."]
+  ]},
+  { pages: "109–112", entries: [
+    ["Durante a instrução, os professores fazem perguntas por muitos motivos", ["Promover atenção", "Promover processamento mais profundo", "Promover aprendizado dos pares", "Dar reforço", "Dar ritmo e controle", "Fornecer informações diagnósticas"]],
+    ["Propósitos de diagnóstico", "Fazer perguntas para servir aos propósitos de diagnóstico ou para permitir que os alunos comparem suas ideias com as de seus pares ajuda na avaliação formativa."],
+    ["Perguntas convergentes", "Perguntas de nível mais baixo, convergentes, têm uma única resposta certa e requerem recordação ou memorização."],
+    ["Perguntas divergentes", "Perguntas de nível mais alto, ou divergentes, podem ter muitas respostas apropriadas e requerer que os alunos realizem processos mais complicados do que a simples memorização."],
+    ["Tipologia de perguntas", ["Perguntas abertas", "Perguntas diagnósticas", "Perguntas de informação", "Perguntas de desafio", "Perguntas de ação", "Perguntas de sequência", "Perguntas de previsão", "Perguntas de extensão", "Perguntas de generalização"]],
+    ["Exemplos de perguntas para os níveis da taxonomia cognitiva de Bloom", ["Conhecimento (recordação) — Qual a definição de um substantivo?", "Compreensão (entendimento) — Resuma a história em suas próprias palavras.", "Aplicação (uso de informações para resolver novos problemas) — Qual é um uso real desse princípio?", "Análise (raciocínio, divisão) — Qual dessas declarações são fatos, e quais são opiniões?", "Síntese (construção, integração) — O que todas essas imagens têm em comum?", "Avaliação (julgamento) — Qual foi o momento mais importante na história, e por quê?"]]
+  ]},
+  { pages: "108", entries: [
+    ["Expressões faciais, comentários e reações", "Os professores dão feedback durante a instrução por meio das suas expressões faciais, comentários e reações a perguntas que os alunos fazem e respostas que eles dão."],
+    ["Notas, escores e comentários escritos", "Feedbacks mais formais costumam ter a forma de notas, escores e comentários escritos que o professor dá em resposta a trabalhos dos alunos."],
+    ["Trabalhos devolvidos sem uma nota ou escore", "Quando os trabalhos são devolvidos sem uma nota ou escore, os alunos prestam mais atenção aos comentários e têm mais boa vontade de revisar e melhorar o seu trabalho."],
+    ["Um elemento a ser aprimorado", "Uma boa técnica é começar descrevendo pelo menos dois aspectos do trabalho e, então, focar-se em apenas um elemento a ser aprimorado."],
+    ["Objetivo instrucional principal", "Para ajudar a focar os comentários em um elemento do trabalho dos alunos, também é bom identificar, de antemão, o objetivo instrucional principal a ser trabalhado na tarefa."],
+    ["Incitar os alunos a pensar", "Para tarefas escritas, os comentários devem pedir que os alunos forneçam mais evidências para sustentar seus argumentos, descrevam uma situação em mais detalhes ou expliquem por que eles assumiram determinada posição."]
+  ]},
+  { pages: "108–110", entries: [
+    ["Aumentar o quanto de feedback os alunos recebem", "A autoavaliação e a avaliação dos pares, contudo, podem aumentar o quanto de feedback os alunos recebem."],
+    ["Expectativas e critérios de avaliação do desempenho", "Para ajudar os alunos a conduzir autoavaliações e avaliações dos pares, é importante que o professor torne as expectativas e os critérios de avaliação do desempenho claros para os alunos."],
+    ["Identificar elementos efetivos", ["Indicar pontos de confusão", "Pedir exemplos ou evidências adicionais", "Fazer perguntas sobre por que certas decisões foram tomadas."]],
+    ["Questões modelo", ["Eu estabeleci um ponto de vista?", "Eu incluí fatos e detalhes para sustentá-lo?", "Eu usei adjetivos para dar descrições dos personagens?"]],
+    ["Três perguntas básicas de autoavaliação", ["Aonde estou indo?", "Onde estou agora?", "Como chego lá?"]]
+  ]},
+  { pages: "112–113", entries: [
+    ["A efetividade do questionamento oral", [
+      "Faça perguntas que estejam relacionadas com o tópico da instrução.",
+      "Evite perguntas globais e excessivamente genéricas.",
+      "Envolva a turma toda no processo de questionamento.",
+      "Cuidado com o padrão em que as perguntas são distribuídas entre os alunos."
+    ]],
+    ["Dê “tempo de espera” o bastante após fazer uma pergunta.", "De três a cinco segundos é tempo o bastante para perguntas de nível mais baixo, enquanto um mínimo de 10 a 30 segundos pode ser necessário para perguntas de nível mais alto."],
+    ["Faça perguntas claras e diretas para evitar confusão.", "A clareza foca o pensamento e aumenta a qualidade das respostas."],
+    ["Sonde as respostas dos alunos com perguntas subsequentes.", ["Por quê?", "Explique como você chegou a essa conclusão", "Pode me dar outro exemplo?"]],
+    ["O questionamento instrucional é um processo social que ocorre em um local público", "Todos os alunos devem ser tratados com encorajamento e respeito."],
+    ["Dê um tempo para perguntas privadas para alunos que são tímidos ou que têm dificuldades de se envolver no processo de questionamento.", "Quando eles ficarem mais confiantes nas suas respostas privadas, faça-os participar gradualmente de discussões públicas, primeiro com grupos pequenos, e depois com a turma toda."],
+    ["Reconheça que o bom questionamento também envolve ouvir e responder bem.", "Ouvir bem significa identificar o significado e as implicações das respostas dos alunos. Responder bem significa acompanhar as respostas dos alunos com comentários que beneficiem o seu desempenho."],
+    ["Evite perguntas que requeiram uma resposta de sim ou não.", "Evite fazer sempre os mesmos tipos de perguntas aos alunos. Pergunte sobre fatos. Mas também peça para os alunos aplicarem, avaliarem ou sintetizarem esses fatos em argumentos, razões ou julgamentos."]
+  ]}
+];
+
+const buttons = [...document.querySelectorAll(".node")];
+const panel = document.querySelector(".panel");
+const entries = document.querySelector(".entries");
+
+function element(tag, value) {
+  const result = document.createElement(tag);
+  result.textContent = value;
+  return result;
+}
+
+function selectBranch(index) {
+  const branch = branches[index];
+  buttons.forEach((button, position) => {
+    button.setAttribute("aria-pressed", String(position === index));
+  });
+  document.querySelector("#ramo").textContent = buttons[index].textContent;
+  document.querySelector("#paginas").textContent = "p. " + branch.pages;
+  entries.replaceChildren(...branch.entries.map(([label, excerpt], position) => {
+    const detail = document.createElement("details");
+    detail.open = position === 0;
+    detail.append(element("summary", label));
+    if (Array.isArray(excerpt)) {
+      const list = document.createElement("ul");
+      list.append(...excerpt.map(item => element("li", item)));
+      detail.append(list);
+    } else {
+      detail.append(element("p", excerpt));
+    }
+    return detail;
+  }));
+}
+
+buttons.forEach((button, index) => {
+  button.addEventListener("click", () => {
+    selectBranch(index);
+    if (matchMedia("(max-width: 650px)").matches) {
+      panel.scrollIntoView({ block: "start" });
+    }
+  });
+});
+selectBranch(0);
+</script>
+</body>
+</html>
