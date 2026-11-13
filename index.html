@@ -9,16 +9,16 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);font:1rem/1.5 "Source Sans 3",system-ui,sans-serif}
 main{max-width:1160px;margin:auto;padding:24px clamp(16px,4vw,56px) 28px}
-.map{position:relative;display:grid;grid-template-columns:1fr 1.1fr 1fr;grid-template-rows:repeat(3,minmax(105px,auto));align-items:center;gap:24px clamp(18px,5vw,70px);padding:22px 0}
+.map{position:relative;display:grid;grid-template-columns:1fr 1.1fr 1fr;grid-template-rows:repeat(4,minmax(64px,auto));align-items:center;gap:24px clamp(18px,5vw,70px);padding:22px 0}
 .links{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .links path{fill:none;stroke:var(--line);stroke-width:1.5;vector-effect:non-scaling-stroke}
 h1,.node{position:relative;margin:0;text-align:center;border-radius:16px}
-h1{grid-area:2/2;background:var(--forest);color:white;padding:27px 16px;font:normal clamp(1.55rem,3vw,2.45rem)/1.08 Georgia,serif}
+h1{grid-area:2/2/4/3;background:var(--forest);color:white;padding:27px 16px;font:normal clamp(1.55rem,3vw,2.45rem)/1.08 Georgia,serif}
 .node{background:var(--mint);border:1px solid #a8beac;color:var(--ink);font:inherit;font-weight:650;min-height:64px;padding:12px;cursor:pointer}
 .node:hover{background:#d5e7d6}
 .node[aria-pressed="true"]{background:var(--forest);color:white;border-color:var(--forest)}
-.node:nth-of-type(1){grid-area:1/1}.node:nth-of-type(2){grid-area:2/1}.node:nth-of-type(3){grid-area:3/1}
-.node:nth-of-type(4){grid-area:1/3}.node:nth-of-type(5){grid-area:2/3}.node:nth-of-type(6){grid-area:3/3}
+.node:nth-of-type(1){grid-area:1/1}.node:nth-of-type(2){grid-area:2/1}.node:nth-of-type(3){grid-area:3/1}.node:nth-of-type(4){grid-area:4/1}
+.node:nth-of-type(5){grid-area:1/3}.node:nth-of-type(6){grid-area:2/3/4/4}.node:nth-of-type(7){grid-area:4/3}
 .panel{border-top:1px solid var(--line);padding-top:14px;scroll-margin-top:12px}
 h2{font:normal clamp(1.5rem,3vw,2rem)/1.2 Georgia,serif;margin:8px 0 12px}
 .reference{color:#455e51;font-size:.86rem;margin:0}
@@ -43,10 +43,11 @@ footer{margin-top:22px}
 <main>
 <section class="map" aria-labelledby="tema">
 <svg class="links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-<path d="M 15 18 C 38 18 29 50 50 50 S 62 18 85 18 M 15 50 H 85 M 15 82 C 38 82 29 50 50 50 S 62 82 85 82"/>
+<path d="M 15 17 C 34 17 34 50 50 50 M 15 39 C 34 39 34 50 50 50 M 15 61 C 34 61 34 50 50 50 M 15 83 C 34 83 34 50 50 50 M 50 50 C 66 50 66 17 85 17 M 50 50 H 85 M 50 50 C 66 50 66 83 85 83"/>
 </svg>
 <h1 id="tema">Atividades formais de avaliação formativa</h1>
-<button type="button" class="node" aria-controls="trechos" aria-pressed="true">Evidências formativas formais</button>
+<button type="button" class="node" aria-controls="trechos" aria-pressed="false">Evidências formativas formais</button>
+<button type="button" class="node" aria-controls="trechos" aria-pressed="true">Atividades formais</button>
 <button type="button" class="node" aria-controls="trechos" aria-pressed="false">Questionamento efetivo</button>
 <button type="button" class="node" aria-controls="trechos" aria-pressed="false">Propósitos e tipos de questionamentos</button>
 <button type="button" class="node" aria-controls="trechos" aria-pressed="false">Feedback para os alunos</button>
@@ -66,9 +67,20 @@ const branches = [
     ["“Sentir” o processo de instrução", "Esse “sentir” depende, em grande parte, das avaliações iniciais e do conhecimento prático que o professor tem do comportamento típico dos seus alunos."],
     ["Planejamento refletido antes da instrução", "Atividades formais de avaliação formativa envolvem planejamento refletido antes da instrução e ações propositadas ao longo dela."],
     ["Informações específicas sobre o nível de compreensão atual dos alunos", "Avaliações formativas formais dão aos professores informações específicas sobre o nível de compreensão atual dos alunos, e frequentemente permitem que os alunos forneçam feedback para ajudar a refinar seu raciocínio ou as suas habilidades."],
-    ["Diversas técnicas", ["Questões pré-planejadas", "Atividades formais", "Autoavaliações dos alunos", "Feedback de pares ou de um instrutor"]],
-    ["Atividades formais", "Atividades formais incluem problemas pequenos, deveres de casa feitos para reconhecer o que os alunos sabem ou sobre o que eles têm dúvidas, quizzes, ensaios e observações formais do laboratório ou outras atividades práticas."],
-    ["Coleta propositada e pré-planejada", "Em todos os casos, o que separa dados de avaliação formais de informais é a coleta propositada e pré-planejada de informações sobre a aprendizagem dos alunos."]
+    ["Diversas técnicas", ["Questões pré-planejadas", "Atividades formais", "Autoavaliações dos alunos", "Feedback de pares ou de um instrutor"]]
+  ]},
+  { pages: "106–107", entries: [
+    ["Atividades formais incluem", [
+      "Problemas pequenos",
+      "Deveres de casa feitos para reconhecer o que os alunos sabem ou sobre o que eles têm dúvidas",
+      "Quizzes",
+      "Ensaios",
+      "Observações formais do laboratório ou outras atividades práticas"
+    ]],
+    ["Coleta propositada e pré-planejada", "Em todos os casos, o que separa dados de avaliação formais de informais é a coleta propositada e pré-planejada de informações sobre a aprendizagem dos alunos."],
+    ["Aprendizagem dos estudantes", "Perceba que a avaliação formativa tem grande foco na aprendizagem dos estudantes, ao passo que a avaliação informal se foca nas atitudes, no envolvimento e em outras características afetivas deles."],
+    ["Planejamento refletido antes da instrução", "Atividades formais de avaliação formativa envolvem planejamento refletido antes da instrução e ações propositadas ao longo dela."],
+    ["Feedbacks formais", "Os professores devem suplementar suas avaliações informais da instrução com feedbacks formais, como deveres de casa, folhas de exercícios e revisões da lição."]
   ]},
   { pages: "107–108", entries: [
     ["Dois propósitos", ["Manter a atenção dos alunos", "Coletar informações sobre o seu nível atual de compreensão."]],
@@ -158,7 +170,7 @@ buttons.forEach((button, index) => {
     }
   });
 });
-selectBranch(0);
+selectBranch(1);
 </script>
 </body>
 </html>
